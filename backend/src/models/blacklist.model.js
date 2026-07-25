@@ -1,15 +1,16 @@
-const mongoose = require('mongoose'); //Import mongoose for MongoDB interactions
+const mongoose = require('mongoose')
 
-const blackListTokenSchema = new mongoose.Schema({
+
+const blacklistTokenSchema = new mongoose.Schema({
     token: {
         type: String,
-        required: [true,"Token is required to be blacklisted"] //Token is required to be blacklisted
+        required: [ true, "token is required to be added in blacklist" ]
     }
-},{
-    timestamps: true //Automatically add createdAt and updatedAt fields
+}, {
+    timestamps: true
 })
 
-const tokenBlackListModel = mongoose.model('blacklistsToken',blackListTokenSchema); //Create a model named 'TokenBlackList' using the blackListTokenSchema
-//Blacklisted tokens will be stored in the 'blacklistsToken' collection in the database
+const tokenBlacklistModel = mongoose.model("blacklistTokens", blacklistTokenSchema)
 
-module.exports = tokenBlackListModel; //Export the tokenBlackListModel for use in other parts of the application
+
+module.exports = tokenBlacklistModel

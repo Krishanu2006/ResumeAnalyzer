@@ -1,29 +1,42 @@
-const express = require('express')
-const authMiddlewware = require('../middleware/auth.middleware')
-const interviewController = require('../controllers/interview.controller')
-const upload = require('../middleware/file.middleware')
+const express = require("express")
+const authMiddleware = require("../middleware/auth.middleware")
+const interviewController = require("../controllers/interview.controller")
+const upload = require("../middleware/file.middleware")
 
 const interviewRouter = express.Router()
 
+
+
 /**
- * @route POST /api/interview
- * @description generate new interview report on the basis of user's self description, resume PDF and job description
+ * @route POST /api/interview/
+ * @description generate new interview report on the basis of user self description,resume pdf and job description.
  * @access private
  */
-interviewRouter.post('/',authMiddlewware.authUser,upload.single("resume"),interviewController.generateInterviewReportController) //the request will be forwarded if and only if a logged in user came
+interviewRouter.post("/", authMiddleware.authUser, upload.single("resume"), interviewController.generateInterViewReportController)
 
 /**
  * @route GET /api/interview/report/:interviewId
- * @description get interview report by interview id
+ * @description get interview report by interviewId.
  * @access private
  */
-interviewRouter.get('/report/:interviewId',authMiddlewware.authUser,interviewController.getReportByIDController)
+interviewRouter.get("/report/:interviewId", authMiddleware.authUser, interviewController.getInterviewReportByIdController)
+
 
 /**
- * @route GET /api/interview
- * @description get all interview report of logged in user
+ * @route GET /api/interview/
+ * @description get all interview reports of logged in user.
  * @access private
  */
-interviewRouter.get('/',authMiddlewware.authUser,interviewController.getAllInterviewReportController)
+interviewRouter.get("/", authMiddleware.authUser, interviewController.getAllInterviewReportsController)
+
+
+/**
+ * @route GET /api/interview/resume/pdf
+ * @description generate resume pdf on the basis of user self description, resume content and job description.
+ * @access private
+ */
+interviewRouter.post("/resume/pdf/:interviewReportId", authMiddleware.authUser, interviewController.generateResumePdfController)
+
+
 
 module.exports = interviewRouter

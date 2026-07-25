@@ -1,10 +1,12 @@
 const multer = require("multer")
 
+
 const upload = multer({
-    storage:multer.memoryStorage(),
-    limits:{
-        fileSize:3*1024*1024 //3 MB maximum size for resume
+    storage: multer.memoryStorage(),
+    limits: {
+        fileSize: 3 * 1024 * 1024 // 3MB
     }
 })
+
 
 module.exports = upload

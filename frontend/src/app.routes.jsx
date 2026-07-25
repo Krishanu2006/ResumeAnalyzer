@@ -3,6 +3,7 @@ import Login from "./festures/auth/pages/Login.jsx";
 import Register from "./festures/auth/pages/Register.jsx";
 import ProtectedRoute from './festures/auth/components/ProtectedRoute.jsx'
 import Home from './festures/interview/pages/Home.jsx'
+import Interview from "./festures/interview/pages/Interview.jsx";
 
 export const router = createBrowserRouter([
     {
