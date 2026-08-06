@@ -202,8 +202,6 @@ export const useInterview = () => {
 
         if (interviewId) {
             getReportById(interviewId);
-        } else {
-            getReports();
         }
 
     }, [interviewId]);

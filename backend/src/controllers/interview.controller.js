@@ -10,7 +10,12 @@ const interviewReportModel = require("../models/interviewReport.model")
  */
 async function generateInterViewReportController(req, res) {
 
-    const resumeContent = await (new pdfParse.PDFParse(Uint8Array.from(req.file.buffer))).getText()
+    const resumeContent = await (
+        new pdfParse.PDFParse(
+            Uint8Array.from(req.file.buffer)
+        )
+    ).getText()
+
     const { selfDescription, jobDescription } = req.body
 
     const interViewReportByAi = await generateInterviewReport({
@@ -18,17 +23,31 @@ async function generateInterViewReportController(req, res) {
         selfDescription,
         jobDescription
     })
-    console.log(interViewReportByAi);
+
+    // console.log(interViewReportByAi) //Use this to debug the AI response if needed.
+
+    // Guest user:
+    // Can generate and view the report,
+    // but the report is NOT saved in the database.
+    if (!req.user) {
+        return res.status(200).json({
+            message: "Interview report generated successfully.",
+            interviewReport: interViewReportByAi
+        })
+    }
+
+    // Logged-in user:
+    // Generate report AND save it to database.
     const interviewReport = await interviewReportModel.create({
         user: req.user.id,
         resume: resumeContent.text,
         selfDescription,
         jobDescription,
         title:
-        interViewReportByAi.title ||
-        interViewReportByAi.target_role ||
-        interViewReportByAi.role ||
-        "Unknown",
+            interViewReportByAi.title ||
+            interViewReportByAi.target_role ||
+            interViewReportByAi.role ||
+            "Unknown",
         ...interViewReportByAi
     })
 
@@ -36,7 +55,6 @@ async function generateInterViewReportController(req, res) {
         message: "Interview report generated successfully.",
         interviewReport
     })
-
 }
 
 /**
@@ -80,7 +98,10 @@ async function getAllInterviewReportsController(req, res) {
 async function generateResumePdfController(req, res) {
     const { interviewReportId } = req.params
 
-    const interviewReport = await interviewReportModel.findById(interviewReportId)
+    const interviewReport = await interviewReportModel.findOne({
+        _id: interviewReportId,
+        user: req.user.id
+    })
 
     if (!interviewReport) {
         return res.status(404).json({

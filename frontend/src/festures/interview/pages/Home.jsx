@@ -2,21 +2,59 @@ import React, { useState, useRef } from 'react'
 import "../style/home.scss"
 import { useInterview } from '../hooks/useInterview.js'
 import { useNavigate } from 'react-router'
+import { useAuth } from '../../auth/hooks/useAuth.js'
 
 const Home = () => {
 
-    const { loading, generateReport,reports } = useInterview()
-    const [ jobDescription, setJobDescription ] = useState("")
-    const [ selfDescription, setSelfDescription ] = useState("")
+    const { loading, generateReport, reports } = useInterview()
+    const [jobDescription, setJobDescription] = useState("")
+    const [selfDescription, setSelfDescription] = useState("")
     const resumeInputRef = useRef()
+    const { user } = useAuth()
 
     const navigate = useNavigate()
 
+    // const handleGenerateReport = async () => {
+    //     const resumeFile = resumeInputRef.current.files[0]
+    //     const data = await generateReport({ jobDescription, selfDescription, resumeFile })
+    //     if (user) {
+    //         // Logged-in user → report is saved in MongoDB
+    //         navigate(`/interview/${data.interviewReport._id}`)
+    //     } else {
+    //         // Guest → report exists only in frontend memory
+    //         navigate("/interview/guest", {
+    //             state: {
+    //                 report: data.interviewReport
+    //             }
+    //         })
+    //     }
+    // }
+
     const handleGenerateReport = async () => {
-        const resumeFile = resumeInputRef.current.files[ 0 ]
-        const data = await generateReport({ jobDescription, selfDescription, resumeFile })
-        navigate(`/interview/${data._id}`)
-    }
+        const resumeFile = resumeInputRef.current.files[0];
+
+        const report = await generateReport({
+            jobDescription,
+            selfDescription,
+            resumeFile
+        });
+        console.log("REPORT RECEIVED IN HOME:", report);
+        console.log("REPORT ID:", report?._id);
+
+        if (!report) {
+            return;
+        }
+
+        if (user) {
+            navigate(`/interview/${report._id}`);
+        } else {
+            navigate("/interview/guest", {
+                state: {
+                    report
+                }
+            });
+        }
+    };
 
     if (loading) {
         return (
