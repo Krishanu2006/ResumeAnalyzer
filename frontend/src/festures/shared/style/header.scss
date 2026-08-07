@@ -1,0 +1,322 @@
+.app-header {
+position: sticky;
+top: 0;
+z-index: 1000;
+width: 100%;
+height: 72px;
+
+background: rgba(255, 255, 255, 0.96);
+border-bottom: 1px solid #e5e7eb;
+
+backdrop-filter: blur(10px);
+
+}
+
+.app-header__inner {
+width: 100%;
+max-width: 1200px;
+height: 100%;
+
+margin: 0 auto;
+padding: 0 1.5rem;
+
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+}
+
+/* ─────────────────────────────────────────────
+Brand
+───────────────────────────────────────────── */
+
+.app-header__brand {
+display: flex;
+align-items: center;
+gap: 0.65rem;
+
+text-decoration: none;
+color: #1f2937;
+
+flex-shrink: 0;
+
+}
+
+.app-header__logo {
+width: 38px;
+height: 38px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+border-radius: 10px;
+
+background: #ff2d78;
+color: #ffffff;
+
+font-size: 0.8rem;
+font-weight: 800;
+letter-spacing: -0.03em;
+
+}
+
+.app-header__name {
+font-size: 1.1rem;
+font-weight: 700;
+letter-spacing: -0.02em;
+}
+
+.app-header__name span {
+color: #ff2d78;
+}
+
+/* ─────────────────────────────────────────────
+Navigation
+───────────────────────────────────────────── */
+
+.app-header__nav {
+display: flex;
+align-items: center;
+gap: 0.35rem;
+
+margin-left: 3rem;
+margin-right: auto;
+
+
+}
+
+.app-header__link {
+position: relative;
+
+padding: 0.55rem 0.85rem;
+
+color: #667085;
+text-decoration: none;
+
+font-size: 0.9rem;
+font-weight: 500;
+
+border-radius: 0.5rem;
+
+transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.app-header__link:hover {
+color: #1f2937;
+background-color: #f8fafc;
+}
+
+.app-header__link.active {
+color: #ff2d78;
+font-weight: 600;
+}
+
+.app-header__link.active::after {
+content: "";
+
+position: absolute;
+left: 0.85rem;
+right: 0.85rem;
+bottom: 0.15rem;
+
+height: 2px;
+
+background: #ff2d78;
+border-radius: 999px;
+
+}
+
+/* ─────────────────────────────────────────────
+Auth Actions
+───────────────────────────────────────────── */
+
+.app-header__actions {
+display: flex;
+align-items: center;
+}
+
+.app-header__auth {
+display: flex;
+align-items: center;
+gap: 0.65rem;
+}
+
+.app-header__login,
+.app-header__signup,
+.app-header__logout {
+font-family: inherit;
+font-size: 0.875rem;
+font-weight: 600;
+border-radius: 0.55rem;
+
+padding: 0.55rem 1rem;
+
+cursor: pointer;
+
+transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+
+}
+
+.app-header__login {
+border: 1px solid #d9dee7;
+background: #ffffff;
+color: #344054;
+}
+
+.app-header__login:hover {
+background: #f8fafc;
+border-color: #cbd5e1;
+}
+
+.app-header__signup {
+border: 1px solid #ff2d78;
+background: #ff2d78;
+color: #ffffff;
+}
+
+.app-header__signup:hover {
+background: #e91f69;
+border-color: #e91f69;
+}
+
+.app-header__login:active,
+.app-header__signup:active,
+.app-header__logout:active {
+transform: translateY(1px);
+}
+
+/* ─────────────────────────────────────────────
+Logged-in User
+───────────────────────────────────────────── */
+
+.app-header__user {
+display: flex;
+align-items: center;
+gap: 0.7rem;
+}
+
+.app-header__avatar {
+width: 36px;
+height: 36px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+border-radius: 50%;
+
+background: #fff0f5;
+color: #ff2d78;
+
+font-size: 0.85rem;
+font-weight: 700;
+
+}
+
+.app-header__user-info {
+display: flex;
+flex-direction: column;
+
+min-width: 120px;
+
+}
+
+.app-header__user-name {
+color: #1f2937;
+
+font-size: 0.82rem;
+font-weight: 600;
+
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+.app-header__user-email {
+color: #667085;
+font-size: 0.7rem;
+
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+
+}
+
+.app-header__logout {
+margin-left: 0.35rem;
+
+border: 1px solid #d9dee7;
+background: #ffffff;
+color: #667085;
+}
+
+.app-header__logout:hover {
+color: #ff2d78;
+border-color: #ff2d78;
+background: #fff7fa;
+}
+
+/* ─────────────────────────────────────────────
+Responsive
+───────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+.app-header {
+height: auto;
+}
+
+.app-header__inner {
+    min-height: 68px;
+    padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.app-header__nav {
+    order: 3;
+
+    width: 100%;
+    margin: 0;
+
+    justify-content: center;
+}
+
+.app-header__user-info {
+    display: none;
+}
+
+.app-header__logout {
+    margin-left: 0;
+}
+}
+
+@media (max-width: 480px) {
+.app-header__name {
+font-size: 1rem;
+}
+
+.app-header__logo {
+    width: 34px;
+    height: 34px;
+}
+
+.app-header__link {
+    padding: 0.45rem 0.65rem;
+    font-size: 0.8rem;
+}
+
+.app-header__login,
+.app-header__signup,
+.app-header__logout {
+    padding: 0.45rem 0.7rem;
+    font-size: 0.8rem;
+}
+
+}

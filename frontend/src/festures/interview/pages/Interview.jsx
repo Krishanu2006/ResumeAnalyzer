@@ -62,6 +62,7 @@ const Interview = () => {
     const { report, getReportById, loading, getResumePdf } = useInterview()
     const { interviewId } = useParams()
     const location = useLocation()
+    const navigate = useNavigate()
 
     const guestReport = location.state?.report
 
@@ -114,6 +115,13 @@ const Interview = () => {
 
                 {/* ── Center Content ── */}
                 <main className='interview-content'>
+                    <button
+                        className="back-button"
+                        onClick={() => navigate(-1)}
+                    >
+                        <span>←</span>
+                        Back
+                    </button>
                     {activeNav === 'technical' && (
                         <section>
                             <div className='content-header'>

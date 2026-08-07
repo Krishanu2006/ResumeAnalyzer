@@ -28,11 +28,12 @@ export async function login({email, password}) {
 }
 
 export async function logout() {
-    try{
-        const response = await api.get("/api/auth/logout")
-        return response.data
-    }catch(err) {
-        console.log(err)
+    try {
+        const response = await api.get("/api/auth/logout");
+        return response.data;
+    } catch (err) {
+        console.error("Logout API error:", err);
+        throw err;
     }
 }
 
