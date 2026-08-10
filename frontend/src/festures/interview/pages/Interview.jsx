@@ -77,9 +77,8 @@ const Interview = () => {
         )
     }
     const scoreColor =
-        report.matchScore >= 80 ? 'score--high' :
-            report.matchScore >= 60 ? 'score--mid' : 'score--low'
-
+        currentReport.matchScore >= 80 ? 'score--high' :
+            currentReport.matchScore >= 60 ? 'score--mid' : 'score--low'
 
     return (
         <div className='interview-page'>

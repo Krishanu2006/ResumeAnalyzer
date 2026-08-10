@@ -45,7 +45,7 @@ const Header = () => {
 
                     {user && (
                         <NavLink
-                            to="/reports"
+                            to="/interview/reports"
                             className={({ isActive }) =>
                                 `app-header__link ${isActive ? "active" : ""}`
                             }

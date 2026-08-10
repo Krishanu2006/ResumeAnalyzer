@@ -1,19 +1,27 @@
-import {useAuth} from '../hooks/useAuth.js'
+import { useAuth } from '../hooks/useAuth.js'
 import React from 'react'
 import { Navigate } from 'react-router-dom'
 
-const ProtectedRoute = ({children}) => {
-    const {isLoading, user} = useAuth()
-    if(isLoading) {
-        return (
-            <main><h1>Loading.......</h1></main>
-        )
+const ProtectedRoute = ({ children }) => {
+    const { isLoading, user } = useAuth();
+
+    console.log("ProtectedRoute:", {
+        isLoading,
+        user
+    });
+
+    if (isLoading) {
+        return <div>Loading.......</div>;
     }
 
-    if(!user) {
-        return <Navigate to={'/login'} replace/>
+    if (!user) {
+        console.log("No authenticated user → redirecting");
+        return <Navigate to="/login" replace />;
     }
-  return children
-}
+
+    console.log("Authenticated → rendering protected page");
+
+    return children;
+};
 
 export default ProtectedRoute

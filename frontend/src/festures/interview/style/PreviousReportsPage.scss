@@ -1,0 +1,253 @@
+.previous-reports {
+    width: 100%;
+    min-height: calc(100vh - 72px);
+    padding: 40px 24px 60px;
+    background: #f5f7fa;
+
+    &__container {
+        width: 100%;
+        max-width: 1180px;
+        margin: 0 auto;
+    }
+
+    // -----------------------------------------
+    // Header
+    // -----------------------------------------
+
+    &__header {
+        margin-bottom: 32px;
+    }
+
+    &__title {
+        margin: 0;
+        color: #111827;
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.5px;
+    }
+
+    &__subtitle {
+        margin: 8px 0 0;
+        color: #6b7280;
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    // -----------------------------------------
+    // Reports Grid
+    // -----------------------------------------
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    // -----------------------------------------
+    // Report Card
+    // -----------------------------------------
+
+    &__card {
+        display: flex;
+        flex-direction: column;
+        min-height: 210px;
+        padding: 22px;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            border-color 0.2s ease;
+
+        &:hover {
+            transform: translateY(-3px);
+            border-color: #d1d5db;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+        }
+    }
+
+    &__card-title {
+        margin: 0 0 16px;
+        color: #1f2937;
+        font-size: 18px;
+        font-weight: 650;
+        line-height: 1.4;
+
+        // Prevent extremely long titles from breaking the card
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+    }
+
+    // -----------------------------------------
+    // Match Score
+    // -----------------------------------------
+
+    &__score {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 18px;
+        padding: 12px 14px;
+        background: #f8fafc;
+        border: 1px solid #eef2f7;
+        border-radius: 10px;
+    }
+
+    &__score-label {
+        color: #6b7280;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    &__score-value {
+        color: #16a34a;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    // -----------------------------------------
+    // Report Metadata
+    // -----------------------------------------
+
+    &__meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: auto;
+        padding-top: 16px;
+        border-top: 1px solid #f1f5f9;
+    }
+
+    &__date-label {
+        color: #9ca3af;
+        font-size: 12px;
+    }
+
+    &__date {
+        color: #4b5563;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    // -----------------------------------------
+    // Empty State
+    // -----------------------------------------
+
+    &__empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 280px;
+        padding: 40px 24px;
+        background: #ffffff;
+        border: 1px dashed #d1d5db;
+        border-radius: 14px;
+        text-align: center;
+    }
+
+    &__empty-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 52px;
+        height: 52px;
+        margin-bottom: 16px;
+        background: #f0fdf4;
+        border-radius: 50%;
+        color: #16a34a;
+        font-size: 22px;
+    }
+
+    &__empty-title {
+        margin: 0 0 6px;
+        color: #1f2937;
+        font-size: 17px;
+        font-weight: 600;
+    }
+
+    &__empty-text {
+        max-width: 420px;
+        margin: 0;
+        color: #6b7280;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    // -----------------------------------------
+    // Loading State
+    // -----------------------------------------
+
+    &__loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 300px;
+        color: #6b7280;
+        font-size: 15px;
+    }
+
+    .previous-reports__card {
+        cursor: pointer;
+    }
+
+    .previous-reports__view {
+        margin-top: 16px;
+        color: #16a34a;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    // -----------------------------------------
+    // Tablet
+    // -----------------------------------------
+
+    @media (max-width: 900px) {
+        padding: 32px 20px 50px;
+
+        &__grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        &__title {
+            font-size: 28px;
+        }
+    }
+
+    // -----------------------------------------
+    // Mobile
+    // -----------------------------------------
+
+    @media (max-width: 600px) {
+        min-height: calc(100vh - 64px);
+        padding: 24px 16px 40px;
+
+        &__header {
+            margin-bottom: 24px;
+        }
+
+        &__title {
+            font-size: 25px;
+        }
+
+        &__subtitle {
+            font-size: 14px;
+        }
+
+        &__grid {
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+
+        &__card {
+            min-height: 190px;
+            padding: 18px;
+        }
+    }
+}
