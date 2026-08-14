@@ -7,7 +7,7 @@ app.use(express.json());
 app.use(cookieParser()); //Use cookie-parser middleware to parse cookies in incoming requests
 /*Middleware and routes will be added here*/
 app.use(cors({
-    origin: 'http://localhost:5173', //Allow requests from this origin
+    origin: process.env.FRONTEND_URL, //Allow requests from this origin
     credentials: true //Allow cookies to be sent with requests
 })); //Use cors middleware to allow cross-origin requests
 const authRouter = require('./routes/auth.routes');  //Import the authRouter

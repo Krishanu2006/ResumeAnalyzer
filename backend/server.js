@@ -1,8 +1,4 @@
 require("dotenv").config();  //Load environment variables from .env file
-console.log({
-  GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
-  GOOGLE_GEN_AI_API_KEY: process.env.GOOGLE_GEN_AI_API_KEY?.substring(0, 10) + "..."
-});
 const app = require('./src/app');  //Import the express app
 const connectDB = require('./src/config/database');  //Connect to the database
 
