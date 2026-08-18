@@ -180,7 +180,7 @@ const Home = () => {
                                     type='file'
                                     id='resume'
                                     name='resume'
-                                    accept='.pdf,.docx'
+                                    accept='.pdf'
                                     onChange={handleResumeUpload}
                                 />
                             </label>
